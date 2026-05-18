@@ -1,0 +1,51 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+# Deploys each subdirectory to its own GitHub Pages site.
+# Prerequisites:
+#   1. Create three public GitHub repos: fourati-net-www, fourati-net-walid, fourati-net-amine
+#      (or use the subdomain names directly as repo names)
+#   2. Generate a Personal Access Token (PAT) with `repo` scope
+#   3. Add it as a repository secret named DEPLOY_TOKEN in this source repo
+#   4. Set DNS CNAME records: fourati.net, walid.fourati.net, amine.fourati.net → <username>.github.io
+
+jobs:
+
+  deploy-www:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: ./www
+          external_repository: YOUR_GITHUB_USERNAME/fourati-net-www
+          publish_branch: gh-pages
+          cname: fourati.net
+
+  deploy-walid:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: ./walid
+          external_repository: YOUR_GITHUB_USERNAME/fourati-net-walid
+          publish_branch: gh-pages
+          cname: walid.fourati.net
+
+  deploy-amine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: ./amine
+          external_repository: YOUR_GITHUB_USERNAME/fourati-net-amine
+          publish_branch: gh-pages
+          cname: amine.fourati.net

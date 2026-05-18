@@ -14,10 +14,9 @@
   var currentLang = 'en';
 
   var pageTitles = {
-    en: 'Walid Fourati — Traffic & Mobility Consultant',
-    de: 'Walid Fourati — Berater für Verkehr & Mobilität',
-    fr: 'Walid Fourati — Consultant en Trafic & Mobilité',
-    ar: 'وليد الفراتي — مستشار في هندسة المرور والتنقل'
+    en: 'Amine Fourati — Chemical Process & Industrial Consultant',
+    fr: 'Amine Fourati — Consultant en Procédés Chimiques & Industrie',
+    ar: 'أمين الفراتي — مستشار صناعي في العمليات الكيميائية'
   };
 
   function setLanguage(lang) {
@@ -43,7 +42,7 @@
     });
 
     document.title = pageTitles[lang] || pageTitles.en;
-    localStorage.setItem('lang', lang);
+    localStorage.setItem('amine-lang', lang);
   }
 
   // ── Navbar scroll shadow ─────────────────────────────────────────────────
@@ -71,7 +70,6 @@
     });
   });
 
-  // Close menu when clicking outside
   document.addEventListener('click', function (e) {
     if (navLinks.classList.contains('open') &&
         !navLinks.contains(e.target) &&
@@ -91,7 +89,7 @@
 
   // ── Init ─────────────────────────────────────────────────────────────────
 
-  var saved = localStorage.getItem('lang');
+  var saved = localStorage.getItem('amine-lang');
   setLanguage(saved && translations[saved] ? saved : 'en');
 
 })();
